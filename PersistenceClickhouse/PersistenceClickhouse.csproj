@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ClickHouse.Driver" Version="0.7.20" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\PersistencePostgres\PersistencePostgres.csproj" />
+    </ItemGroup>
+
+</Project>

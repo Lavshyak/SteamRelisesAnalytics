@@ -1,0 +1,31 @@
+﻿services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:25.9.4-alpine
+    # 9000, 8123
+    environment:
+     - CLICKHOUSE_DB=my_database
+     - CLICKHOUSE_USER=username
+     - CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1
+     - CLICKHOUSE_PASSWORD=password
+  postgres:
+    image: postgres:16.4
+    environment:
+      POSTGRES_DB: main_db
+      POSTGRES_USER: main_user
+      POSTGRES_PASSWORD: 8yegFY78w%&&8e
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    # 5432
+  rabbitmq:
+    image: rabbitmq:4.0.8
+    hostname: rabbitmq
+    ports:
+      - "5672:5672" # основное соединение
+      - "15672:15672" # web-интерфейс
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmquser
+      - RABBITMQ_DEFAULT_PASS=rmqpassword
+    # queues:
+    # CollectProductInfosTasks (Year, FromMonth, ToMonth)
+    # CollectedProductReleases (AppId, Title, Year, Month, DateOfMonth?, FetchedAt)
+    # CollectedProductReleasesAndData (AppId, Title, Year, Month, DateOfMonth?) + (ShortDescription, Tags, ...)
+    # CollectedProductReleasesAndDataAndFollowersCount (AppId, Title, Year, Month, DateOfMonth?) + (Description, ...) + (FollowersCount)
